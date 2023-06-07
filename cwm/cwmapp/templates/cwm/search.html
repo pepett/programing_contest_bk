@@ -1,0 +1,21 @@
+{% extends "cwm/base.html" %}
+
+{% block title %}トップページ{% endblock %}
+{% block content %}
+
+<main>
+    <link rel="stylesheet" href="/static/css/search.css">
+    <div class="title">
+        <h2>音楽を見つける</h2>
+    </div>
+    <form action="{% url 'result' %}">
+        <div class="search-form">
+            <input type="text" placeholder="キーワードを入力" class="search-input" name="search-music">
+            <input type="submit" value="検索" class="search-button">
+        </div>
+        <div class="music-kinds">
+            
+        </div>
+    </form>
+</main>
+{% endblock %}

@@ -1,0 +1,85 @@
+{% extends "cwm/base.html" %}
+{% load static %}
+{% block title %}index{% endblock %}
+{% block content %}
+<main>
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+    <!--ローディング画面ここから-->
+    <div id="loading">
+        <div class="logo">
+            <img alt="CWM" src="{% static 'img/tmp/logo.png'%}">
+            <span>Connect With Music</span>
+        </div>
+        <div class="fingerprint-spinner">
+            <div class="spinner-ring"></div>
+            <div class="spinner-ring"></div>
+            <div class="spinner-ring"></div>
+            <div class="spinner-ring"></div>
+            <div class="spinner-ring"></div>
+            <div class="spinner-ring"></div>
+            <div class="spinner-ring"></div>
+            <div class="spinner-ring"></div>
+            <div class="spinner-ring"></div>
+          </div>
+    </div>
+    <!--ここまで-->
+    <p class="bigtext">一覧ページ</p>
+    <div id="trackbox" class="toprank">
+        <!--試しにFake typeの人気順に表示する-->
+        {% if results %}
+        {% for x in results %}
+        <div class="songbox">
+            <button class="PlaySongBT" type="button" value="{{ x.preview_url }}" onclick="PlayMusic('{{ x.preview_url }}',this);">
+                <img src="{% static 'img/tmp/play_green.png' %}">
+            </button>
+            <a href="{% url 'mus' x.id %}">
+                <img class="music_img" src="{{x.album.images.0.url}}" width="150" height="150" class="" alt="">
+                <h3 class="SongNameText" ><a href="{% url 'mus' x.id %}">{{x.name}}</a></h3>
+                <h3 class="SongNameText" >{{x.artists.0.name}}</h3>
+            </a>
+        </div>
+        {% endfor %}
+        {% endif %}
+    </div>
+    <p class="bigtext">一覧ページ2</p>
+    <div id="trackbox" class="toprank">
+        {% if results2 %}
+        {% for y in results2 %}
+        <div class="songbox">
+            <button class="PlaySongBT" type="button" value="{{ y.preview_url }}" onclick="PlayMusic('{{ y.preview_url }}',this);">
+                <img src="{% static 'img/tmp/play_green.png' %}">
+            </button>
+            <a href="{% url 'mus' y.id %}">
+                <img class="music_img" src="{{y.album.images.0.url}}" width="150" height="150" class="" alt="">
+                <h3 class="SongNameText" ><a href="{% url 'mus' y.id %}">{{y.name}}</a></h3>
+                <h3 class="SongNameText" >{{y.artists.0.name}}</h3>
+            </a>
+        </div>
+        {% endfor %}
+        {% endif %}
+    </div>
+    <p class="bigtext">一覧ページ3</p>
+    <div id="trackbox" class="toprank">
+        {% if results3 %}
+        {% for z in results3 %}
+        <div class="songbox">
+            <button class="PlaySongBT" type="button" value="{{ z.preview_url }}" onclick="PlayMusic('{{ z.preview_url }}',this);">
+                <img src="{% static 'img/tmp/play_green.png' %}">
+            </button>
+            <a href="{% url 'mus' z.id %}">
+                <img class="music_img" src="{{z.album.images.0.url}}" width="150" height="150" class="" alt="">
+                <h3 class="SongNameText" ><a href="{% url 'mus' z.id %}">{{z.name}}</a></h3>
+                <h3 class="SongNameText" >{{z.artists.0.name}}</h3>
+            </a>
+        </div>
+        {% endfor %}
+        {% endif %}
+    </div>
+    <div class="MiniPlayer" onclick="PlayMusic()"></div>
+    <script type="text/javascript">
+        var PlayBTimg = "<img src='{% static 'img/tmp/play_green.png' %}'>";
+        var StopBTimg = "<img src='{% static 'img/tmp/stop.png' %}'>";
+    </script>
+    <script src="{% static 'js/index.js' %}"></script>
+</main>
+{% endblock %}

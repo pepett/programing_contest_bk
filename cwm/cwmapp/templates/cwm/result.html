@@ -1,0 +1,21 @@
+{% extends "cwm/base.html" %}
+{% load static %}
+{% block title %}search results{% endblock %}
+{% block content %}
+<main>
+    <link rel="stylesheet" href="{% static 'css/result.css' %}">
+    <br><br>
+    <h2>検索結果</h2>
+    {% for v in results.tracks.items %}
+        <div class="music">
+            <div class="images">
+                <img src="{{ v.album.images.1.url }}" alt="画像">
+            </div>
+            <div class="contents">
+                <div class="music-name"><a href="{% url 'mus' v.id %}">{{ v.name }}</a></div>
+                <div class="artist-name">{{ v.artists.0.name }}</div>
+            </div>
+        </div>
+    {% endfor %}
+</main>
+{% endblock %}
